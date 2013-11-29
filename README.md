@@ -11,7 +11,7 @@ For something more all encompassing, I recommend considering this project: https
 <h2>Goals</h2>
 This is a clone of iOS7, not a custom design. iOS is usually my first target platform. To add other platforms or custom look, one could modify only the iOS7 elements in the CSS (without touching JS). 
 
-This project does *not* try to be a complete mobile toolkit. It just clones key elements iOS7. It can be used with a responsive front-end CSS without unecessary overlaps. It should remain lightweight and focus only on those key elements. It should not require external libraries outside of the Angular ecosystem (no jQuery for example).
+This project does *not* try to be a complete mobile toolkit. It just clones iOS7 elements key to a native feel. It can be used with a responsive front-end framework without unecessary overlaps. It should remain lightweight and focus only on those key elements. It should not require external libraries outside of the Angular ecosystem (no jQuery for example).
 
 <h2>Features</h2>
 Limited to:
