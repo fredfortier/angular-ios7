@@ -1,0 +1,23 @@
+{
+    "name": "angular-ios7",
+    "version": "1.0.0",
+    "main": "src/module.js",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "angular": "~1.2",
+        "angular-route": "~1.2",
+        "angular-touch": "~1.2"
+    },
+    "license": "MIT",
+    "ignore": [
+        "node_modules",
+        "vendor",
+        "LICENSE",
+        "Makefile",
+        "demo",
+        "src"
+    ]
+}
