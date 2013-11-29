@@ -3,6 +3,8 @@ angular-ios7
 
 Lightweight Angular module that replicates key design elements of iOS7
 
+**Currently under development
+
 <h2>Why?</h2>
 To add a native feel to HTML5 apps. So far, my quest for the perfect HTML5 mobile toolkit has been unsuccessful. I use responsive front-end frameworks (like Bootstrap) but they are not designed to achieve that "native feel". Conversely, most mobile specific toolkits give me more than I require -- including overlapping scripts, additional dependencies and conflicting opinions. I do not want any feature that overlaps with Angular (or a responsive framework) unless it provide clear benefits. So I decided to write my own *lightweight* Angular module.
 
