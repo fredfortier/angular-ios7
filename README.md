@@ -4,7 +4,7 @@ angular-ios7
 Lightweight Angular modular that replicates key design elements of iOS7
 
 Why?
-The majority of mobile app that I am asked to build have some sort of cross mobile/web use cases. With AngularJS and increasingly capable mobile devices, it makes sense to build HTML5 apps. So far, my quest for the perfect HTML5 mobile toolkit has not been so good. Most toolkit give me more that I need. So I decided to write my own *lightweight* Angular module.
+The majority of mobile app that I am asked to build have some sort of cross mobile/web use cases. With AngularJS and increasingly capable mobile devices, it makes sense to build HTML5 apps. So far, my quest for the perfect HTML5 mobile toolkit has not been so good. Most toolkits give me more than I need (more overlappping scripts that I care to load). So I decided to write my own *lightweight* Angular module.
 
 If you need something more feature rich and all encompassing, I recommend that you look into this project: https://github.com/angular-widgets/angular-jqm.
 
