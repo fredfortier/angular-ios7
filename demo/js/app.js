@@ -4,4 +4,7 @@ angular.module('mobileCloneDemo', ['mobileClone'])
     })
     .run(function () {
 
-    });
+    })
+    .controller('DemoCtrl', function ($scope) {
+        console.log('in the DemoCtrl', $scope);
+    })

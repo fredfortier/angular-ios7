@@ -24,5 +24,5 @@ Limited to:
 - List filter
 - Route provider
 
-This project is largely based on: https://github.com/c2prods/Project-Tyson
+This project is largely based on: http://c2prods.com/web/2013/cloning-the-ui-of-ios-7-with-html-css-and-javascript/
 
