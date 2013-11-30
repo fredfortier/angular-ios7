@@ -17,65 +17,15 @@
 </head>
 <body class="ios7" ng-controller="DemoCtrl"> <!-- native | ios7 -->
 <pages>
-    <section id="view-home">
+    <mc-page id="view-home" title="Test Page">
         <header>
-            <button class="left">
-                <div class="label">About</div>
-            </button>
-            <h1>All Contacts</h1>
+            <mc-nav position="left" back="true">Menu</mc-nav>
+            <mc-nav position="right" change-to="view-done" action="true">Info</mc-nav>
         </header>
-        <div class="scrollMask"></div>
-        <div class="scrollWrap">
-            <div class="scroll">
-                <div class="content">
-                    <ul class="arrowed">
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">John Alexander</div>
-                                <div class="light">CEO @A Super Corp</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">Miranda Bowman</div>
-                                <div class="light">Advisor @Another Super Corp</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">Jane Doe</div>
-                                <div class="light">Senior Brand Manager @Self-employed</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">Thomas David</div>
-                                <div class="light">VP Strategy @Some Startup</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">Jack Person</div>
-                                <div class="light">Chief decorator @Hollywood studios</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">Maria Verner</div>
-                                <div class="light">VP Innovation @A big company</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="innerLi">
-                                <div class="big">Jesus Christ</div>
-                                <div class="light">VP General Administration @God</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        <mc-content>
+           <h1>hello world!</h1>
+        </mc-content>
+    </mc-page>
     <section class="hidden" id="view-forms">
         <header>
             <button class="left arrow">

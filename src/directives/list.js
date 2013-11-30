@@ -1,5 +1,5 @@
 angular.module('mobileClone')
-    .directive('list', function factory($history) {
+    .directive('listview', function factory($history) {
         return {
             restrict: 'E',
             replace: true,
