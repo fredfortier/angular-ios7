@@ -11,6 +11,9 @@
         "angular-route": "~1.2",
         "angular-touch": "~1.2"
     },
+    "devDependencies": {
+        "bootstrap": "~3"
+    },
     "license": "MIT",
     "ignore": [
         "node_modules",
