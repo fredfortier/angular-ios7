@@ -16,14 +16,23 @@
     <title>Demo iOS7 with Bootstrap 3</title>
 </head>
 <body class="ios7" ng-controller="DemoCtrl"> <!-- native | ios7 -->
-<pages>
-    <mc-page id="view-home" title="Test Page">
+<mc-pages>
+    <mc-page id="view-home" title="Test Page" main="true">
         <header>
             <mc-nav position="left" back="true">Menu</mc-nav>
             <mc-nav position="right" change-to="view-done" action="true">Info</mc-nav>
         </header>
         <mc-content>
            <h1>hello world!</h1>
+        </mc-content>
+    </mc-page>
+    <mc-page id="view-done" title="Done Page">
+        <header>
+            <mc-nav position="left" back="true">Back</mc-nav>
+            <mc-nav position="right" change-to="view-home" action="true">Done</mc-nav>
+        </header>
+        <mc-content>
+            <h1>Done!</h1>
         </mc-content>
     </mc-page>
     <section class="hidden" id="view-forms">
@@ -47,22 +56,6 @@
             </div>
         </div>
     </section>
-    <section class="hidden" id="view-done">
-        <header>
-            <h1>That's it!</h1>
-            <button class="right bold">
-                <div class="label">Done</div>
-            </button>
-        </header>
-        <div class="scrollMask"></div>
-        <div class="scrollWrap">
-            <div class="scroll">
-                <div class="content">
-                    <h2>Message sent!</h2>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="hidden" id="view-about">
         <header>
             <h1>About</h1>
@@ -81,6 +74,6 @@
             </div>
         </div>
     </section>
-</pages>
+</mc-pages>
 </body>
 </html>

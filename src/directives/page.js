@@ -1,27 +1,36 @@
 angular.module('mobileClone')
-    .directive('mcPage', function factory($history, $compile) {
+    .directive('mcPage', function factory() {
         return {
             restrict: 'E',
             replace: true,
             transclude: true,
+            require: '^mcPages',
             scope: {
-                title: '@'
+                id: '@',
+                title: '@',
+                main: '='
             },
             template: '<section ng-transclude></section>',
             controller: function ($scope, $element) {
                 console.log('rendering page children in element:', $element, 'with scope:', $scope);
                 var buttons = $scope.buttons = [];
-                this.addButton = function (label, position, back, action) {
+                this.addButton = function(button) {
+                    buttons.push(button);
                 }
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element, attrs, pagesCtrl) {
                 console.log('rendering page in element:', element, 'with attributes:', attrs);
                 console.log('the directive scope:', scope);
                 element.find('header').append('<h1>' + scope.title + '</h1>');
+                var current = (scope.main === true);
+                pagesCtrl.addPage(scope, current);
+                if (!current) {
+                    element.addClass('hidden');
+                }
             }
         };
     })
-    .directive('mcNav', function factory($history) {
+    .directive('mcNav', function factory() {
         return {
             restrict: 'E',
             replace: true,
@@ -30,11 +39,11 @@ angular.module('mobileClone')
             scope: {
                 position: '@',
                 changeTo: '@',
-                back: '@',
-                action: '@'
+                back: '=',
+                action: '='
             },
             template: '<button><div class="label" ng-transclude></div></button>',
-            link: function (scope, element, attrs) {
+            link: function (scope, element, attrs, pageCtrl) {
                 console.log('rendering button in element:', element, 'with attributes:', attrs);
                 var classes = [scope.position || 'left'];
                 if (scope.back === true) {
@@ -44,10 +53,11 @@ angular.module('mobileClone')
                     classes.push('bold');
                 }
                 element.addClass(classes.join(' '));
+                pageCtrl.addButton(scope);
             }
         };
     })
-    .directive('mcContent', function factory($history) {
+    .directive('mcContent', function factory() {
         return {
             restrict: 'E',
             replace: true,
