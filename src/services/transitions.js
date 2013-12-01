@@ -96,7 +96,7 @@ var TextboxResize = function (el) {
     }
 };
 angular.module('mobileClone')
-    .animation('.slide-animation', function ($pages, $transitions, $q) {
+    .animation('.slide-animation', function ($pages, $transitions) {
         return {
             enter: function (element, done) {
                 //run the animation here and call done when the animation is complete
@@ -114,7 +114,7 @@ angular.module('mobileClone')
                 //run the animation here and call done when the animation is complete
                 console.log('animating leave element:', element);
                 setTimeout(function () {
-                    console.log('leave animation complete');
+                    console.log('removing the page from ng-view...');
                     done();
                 }, 1000);
             }

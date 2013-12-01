@@ -28,7 +28,6 @@ angular.module('mobileClone')
                     if ($pages.previous() && ($pages.current() != $pages.previous())) {
                         console.log('the route points to a different page, transitioning...');
                         $pages._back = (back);
-//                        $pages.transition();
                     }
                 } else {
                     throw new Error('could not set the current page, the route is invalid');
