@@ -96,10 +96,9 @@ var TextboxResize = function (el) {
     }
 };
 angular.module('mobileClone')
-    .animation('.slide-animation', function ($pages, $transitions) {
+    .animation('.slide-animation', function ($pages, $transitions, $timeout) {
         return {
             enter: function (element, done) {
-                //run the animation here and call done when the animation is complete
                 console.log('animating enter element:', element);
                 console.log('transitioning from:', $pages.previous(), 'to', $pages.current());
                 console.log('the back page:', $pages._back);
@@ -111,10 +110,9 @@ angular.module('mobileClone')
                     });
             },
             leave: function (element, done) {
-                //run the animation here and call done when the animation is complete
-                console.log('animating leave element:', element);
-                setTimeout(function () {
-                    console.log('removing the page from ng-view...');
+                console.log('giving one second for the transition animation to complete');
+                $timeout(function () {
+                    console.log('removing', $pages.previous(), 'from ng-view...');
                     done();
                 }, 1000);
             }
