@@ -1,6 +1,16 @@
 angular.module('mobileCloneDemo', ['mobileClone'])
-    .config(function () {
-
+    .config(function ($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
+        $routeProvider
+            .when("/view-home", {
+                template: "view-home"
+            })
+            .when("/view-done", {
+                template: "view-done"
+            })
+            .otherwise({
+                redirectTo: "/"
+            });
     })
     .run(function () {
 

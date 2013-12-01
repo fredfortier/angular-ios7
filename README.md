@@ -11,7 +11,7 @@ To add a native feel to HTML5 apps. So far, my quest for the perfect HTML5 mobil
 For something more all encompassing, I recommend considering this project: https://github.com/angular-widgets/angular-jqm.
 
 <h2>Goals</h2>
-This is a clone of iOS7, not a custom design. iOS is usually my first target platform. To add other platforms or custom look, one could modify only the iOS7 elements in the CSS (without touching JS). 
+This is a clone of iOS7, not a custom design. To add other platforms or custom look, one could modify only the iOS7 elements in the CSS (without touching JS).
 
 This project does *not* try to be a complete mobile toolkit. It just clones iOS7 elements key to a native feel. It can be used with a responsive front-end framework without unnecessary overlap and without inherently depending on it. It should remain lightweight and focus only on those key elements. It should not introduce dependencies outside of the Angular ecosystem.
 

@@ -1,79 +1,44 @@
 <!DOCTYPE html>
 <html ng-app="mobileCloneDemo">
 <head>
-    <link rel="stylesheet" href="../vendor/css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="../vendor/project-tyson/css/style.css" type="text/css"/>
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-route/angular-route.js"></script>
-    <script src="../bower_components/angular-touch/angular-touch.js"></script>
-    <script src="../src/module.js"></script>
-    <script src="../src/services/history.js"></script>
-    <script src="../src/services/transitions.js"></script>
-    <script src="../src/directives/pages.js"></script>
-    <script src="../src/directives/page.js"></script>
-    <script src="../src/directives/list.js"></script>
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="vendor/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="vendor/project-tyson/css/style.css" type="text/css"/>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="src/module.js"></script>
+    <script src="src/services/pages.js"></script>
+    <script src="src/services/transitions.js"></script>
+    <script src="src/directives/view.js"></script>
+    <script src="src/directives/page.js"></script>
+    <script src="src/directives/list.js"></script>
+    <script src="demo/js/app.js"></script>
     <title>Demo iOS7 with Bootstrap 3</title>
+    <script type="text/ng-template" id="view-home.html">
+        <mc-page id="view-home" title="Test Page" main="true">
+            <header>
+                <mc-nav position="left" back="true">Menu</mc-nav>
+                <mc-nav position="right" change-to="view-done" action="true">Info</mc-nav>
+            </header>
+            <mc-content>
+                <h1>hello world!</h1>
+            </mc-content>
+        </mc-page>
+    </script>
+    <script type="text/ng-template" id="view-done.html">
+        <mc-page id="view-done" title="Done Page">
+            <header>
+                <mc-nav position="left" back="true">Back</mc-nav>
+                <mc-nav position="right" change-to="view-home" action="true">Done</mc-nav>
+            </header>
+            <mc-content>
+                <h1>Done!</h1>
+            </mc-content>
+        </mc-page>
+    </script>
 </head>
 <body class="ios7" ng-controller="DemoCtrl"> <!-- native | ios7 -->
-<mc-pages>
-    <mc-page id="view-home" title="Test Page" main="true">
-        <header>
-            <mc-nav position="left" back="true">Menu</mc-nav>
-            <mc-nav position="right" change-to="view-done" action="true">Info</mc-nav>
-        </header>
-        <mc-content>
-           <h1>hello world!</h1>
-        </mc-content>
-    </mc-page>
-    <mc-page id="view-done" title="Done Page">
-        <header>
-            <mc-nav position="left" back="true">Back</mc-nav>
-            <mc-nav position="right" change-to="view-home" action="true">Done</mc-nav>
-        </header>
-        <mc-content>
-            <h1>Done!</h1>
-        </mc-content>
-    </mc-page>
-    <section class="hidden" id="view-forms">
-        <header>
-            <button class="left arrow">
-                <div class="label">All Contacts</div>
-            </button>
-            <h1>Message</h1>
-            <button class="right bold green">
-                <div class="label">Send</div>
-            </button>
-        </header>
-        <div class="scrollMask"></div>
-        <div class="scrollWrap">
-            <div class="scroll">
-                <div class="content">
-                    <input placeholder="Name" type="text"/>
-                    <input placeholder="Email" type="email"/>
-                    <textarea placeholder="Your Message" rows="5"></textarea>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="hidden" id="view-about">
-        <header>
-            <h1>About</h1>
-            <button class="right bold">
-                <div class="label">Done</div>
-            </button>
-        </header>
-        <div class="scrollMask"></div>
-        <div class="scrollWrap">
-            <div class="scroll">
-                <div class="content">
-                    <h2>My Super App</h2>
-
-                    <p>Lorem Ipsum.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-</mc-pages>
+<mc-view></mc-view>
+<ng-view></ng-view>
 </body>
 </html>

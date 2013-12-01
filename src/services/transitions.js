@@ -100,10 +100,10 @@ angular.module('mobileClone')
 
         return {
             slide: function (animation, from, to) {
-                console.log('sliding:',animation, from, to);
+                console.log('sliding:', animation, from, to);
                 var deferred = $q.defer();
                 try {
-                    Slide(animation, from, to, function () {
+                    Slide(animation, to, from, function () {
                         deferred.resolve(true);
                     });
                 } catch (err) {

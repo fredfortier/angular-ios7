@@ -1,10 +1,10 @@
 angular.module('mobileClone')
-    .directive('mcPage', function factory() {
+    .directive('mcPage', function factory($pages) {
         return {
             restrict: 'E',
             replace: true,
             transclude: true,
-            require: '^mcPages',
+            require: '^mcView',
             scope: {
                 id: '@',
                 title: '@',
@@ -12,25 +12,23 @@ angular.module('mobileClone')
             },
             template: '<section ng-transclude></section>',
             controller: function ($scope, $element) {
-                console.log('rendering page children in element:', $element, 'with scope:', $scope);
                 var buttons = $scope.buttons = [];
-                this.addButton = function(button) {
+                this.addButton = function (button) {
                     buttons.push(button);
                 }
+                $pages.add($scope);
             },
-            link: function (scope, element, attrs, pagesCtrl) {
+            link: function (scope, element, attrs) {
                 console.log('rendering page in element:', element, 'with attributes:', attrs);
-                console.log('the directive scope:', scope);
                 element.find('header').append('<h1>' + scope.title + '</h1>');
                 var current = (scope.main === true);
-                pagesCtrl.addPage(scope, current);
                 if (!current) {
                     element.addClass('hidden');
                 }
             }
         };
     })
-    .directive('mcNav', function factory() {
+    .directive('mcNav', function factory($pages) {
         return {
             restrict: 'E',
             replace: true,
@@ -42,7 +40,19 @@ angular.module('mobileClone')
                 back: '=',
                 action: '='
             },
-            template: '<button><div class="label" ng-transclude></div></button>',
+            template: '<button ng-click="clicked()"><div class="label" ng-transclude></div></button>',
+            controller: function ($scope, $element) {
+                $scope.clicked = function () {
+                    console.log('clicked:', $scope);
+                    if ($scope.changeTo) {
+                        $pages.next($scope.changeTo);
+                    } else if ($scope.back === true) {
+                        $pages.back();
+                    } else {
+                        console.log('no action associated with the page');
+                    }
+                }
+            },
             link: function (scope, element, attrs, pageCtrl) {
                 console.log('rendering button in element:', element, 'with attributes:', attrs);
                 var classes = [scope.position || 'left'];
