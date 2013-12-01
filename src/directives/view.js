@@ -35,34 +35,6 @@ angular.module('mobileClone')
                         console.log('the page did not change, ignoring the event...');
                         return;
                     }
-//                    console.log('changed current page:', page);
-//                    function findPage() {
-//                        var pageElement = null;
-//                        angular.forEach(element.children(), function (el) {
-//                            if (el.id === page) {
-//                                pageElement = el;
-//                                return;
-//                            }
-//                        });
-//                        return pageElement;
-//                    }
-//
-//                    var existingPage = findPage();
-//                    if (!existingPage) {
-//                        console.log('the page does not exist yet, creating it...');
-//                        var template = $templateCache.get(page + '.html');
-//                        if (template) {
-//                            element.append(template);
-//                            var el = findPage();
-//                            console.log('compiling template element:', el);
-//                            $compile(el)(scope);
-//                        } else {
-//                            console.error('page not found in the template cache', $templateCache.info());
-//                        }
-//                    }
-
-
-
                     var back = false;
                     if ($location.search().back) {
                         back = true;
