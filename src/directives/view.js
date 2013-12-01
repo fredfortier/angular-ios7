@@ -22,6 +22,7 @@ angular.module('mobileClone')
                         console.log('adding the route params to scope:', currRoute.pathParams);
                         angular.extend($scope, currRoute.pathParams);
                     }
+                    $rootScope.$emit('pageChangeStart', $scope);
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
                 });
             },

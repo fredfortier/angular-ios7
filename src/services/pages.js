@@ -6,6 +6,7 @@ angular.module('mobileClone')
             _history: [],
             _pages: [],
             _back: null,
+            _params:null,
             add: function (page) {
                 console.log('adding page to collection:', page);
                 $pages._pages.push(page);
