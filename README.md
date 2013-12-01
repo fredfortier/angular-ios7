@@ -3,7 +3,7 @@ angular-ios7
 
 Lightweight Angular module that replicates key design elements of iOS7
 
-Currently under development
+Currently under development. It works at a basic level but a lot of things may change.
 
 Try it here: http://angular-ios7.herokuapp.com
 
