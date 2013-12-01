@@ -3,7 +3,7 @@ var connect = require('connect')
     , fs = require('fs');
 //Setup Express
 var server = express();
-var port = 3001;
+var port = (process.env.PORT || 8083);
 server.configure(function () {
     server.use(connect.bodyParser());
     server.use(connect.static(__dirname));
