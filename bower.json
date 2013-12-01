@@ -1,7 +1,7 @@
 {
     "name": "angular-ios7",
     "version": "1.0.0",
-    "main": "src/module.js",
+    "main": "dist/angular-ios7.js",
     "ignore": [
         ".jshintrc",
         "**/*.txt"
