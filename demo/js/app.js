@@ -3,13 +3,13 @@ angular.module('mobileCloneDemo', ['mobileClone'])
         $locationProvider.html5Mode(true);
         $routeProvider
             .when("/view-home", {
-                template: "view-home"
+                templateUrl: "view-home.html"
             })
             .when("/view-done", {
-                template: "view-done"
+                templateUrl: "view-done.html"
             })
             .when("/view-details/:itemId", {
-                template: "view-details"
+                templateUrl: "view-details.html"
             })
             .otherwise({
                 redirectTo: "/view-home"

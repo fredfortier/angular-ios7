@@ -9,7 +9,8 @@
     "dependencies": {
         "angular": "~1.2",
         "angular-route": "~1.2",
-        "angular-touch": "~1.2"
+        "angular-touch": "~1.2",
+        "angular-animate": "~1.2"
     },
     "devDependencies": {
         "bootstrap": "~3"

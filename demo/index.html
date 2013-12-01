@@ -13,6 +13,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="src/module.js"></script>
     <script src="src/services/pages.js"></script>
     <script src="src/services/transitions.js"></script>
@@ -22,7 +23,7 @@
     <script src="demo/js/app.js"></script>
     <title>Demo iOS7 with Bootstrap 3</title>
     <script type="text/ng-template" id="view-home.html">
-        <mc-page id="view-home" title="Test Page" main="true">
+        <mc-page id="view-home" title="Test Page">
             <header>
                 <mc-nav position="left" back="true">Menu</mc-nav>
                 <mc-nav position="right" change-to="view-done" action="true">Info</mc-nav>
@@ -104,6 +105,8 @@
 </head>
 <body class="ios7" ng-controller="DemoCtrl"> <!-- native | ios7 -->
 <mc-view></mc-view>
-<ng-view></ng-view>
+<div class="container">
+    <ng-view id="ng-view" class="slide-animation"></ng-view>
+</div>
 </body>
 </html>

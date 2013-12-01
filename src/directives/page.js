@@ -4,11 +4,9 @@ angular.module('mobileClone')
             restrict: 'E',
             replace: true,
             transclude: true,
-            require: '^mcView',
             scope: {
                 id: '@',
-                title: '@',
-                main: '='
+                title: '@'
             },
             template: '<section ng-transclude></section>',
             controller: function ($scope, $element) {
@@ -21,10 +19,6 @@ angular.module('mobileClone')
             link: function (scope, element, attrs) {
                 console.log('rendering page in element:', element, 'with attributes:', attrs);
                 element.find('header').append('<h1>' + scope.title + '</h1>');
-                var current = (scope.main === true);
-                if (!current) {
-                    element.addClass('hidden');
-                }
                 $transitions.resize(element.find('h1')[0]);
             }
         };

@@ -28,7 +28,7 @@ angular.module('mobileClone')
                     if ($pages.previous() && ($pages.current() != $pages.previous())) {
                         console.log('the route points to a different page, transitioning...');
                         $pages._back = (back);
-                        $pages.transition();
+//                        $pages.transition();
                     }
                 } else {
                     throw new Error('could not set the current page, the route is invalid');
@@ -52,15 +52,6 @@ angular.module('mobileClone')
             },
             info: function () {
                 return {current: $pages.current(), previous: $pages.previous(), historySize: $pages._history.length};
-            },
-            transition: function () {
-                console.log('transitioning from:', $pages.previous(), 'to', $pages.current());
-                console.log('the back page:', $pages._back);
-                var animation = ($pages._back) ? 'sr' : 'sl';
-                return $transitions.slide(animation, $pages.previous().id, $pages.current().id)
-                    .then(function () {
-                        console.log('slide transition complete with animation:', animation);
-                    });
             },
             next: function (pageId, param) {
                 console.log('going to page:', pageId);
