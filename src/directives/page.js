@@ -1,5 +1,5 @@
 angular.module('mobileClone')
-    .directive('mcPage', function factory($pages) {
+    .directive('mcPage', function factory($pages, $transitions) {
         return {
             restrict: 'E',
             replace: true,
@@ -25,6 +25,7 @@ angular.module('mobileClone')
                 if (!current) {
                     element.addClass('hidden');
                 }
+                $transitions.resize(element.find('h1')[0]);
             }
         };
     })

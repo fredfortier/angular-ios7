@@ -27,29 +27,7 @@
                 <mc-nav position="right" change-to="view-done" action="true">Info</mc-nav>
             </header>
             <mc-content>
-                <h1>hello world!</h1>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
+                <mc-list items="items" change-to="view-details" param="id"></mc-list>
             </mc-content>
         </mc-page>
     </script>
@@ -61,6 +39,16 @@
             </header>
             <mc-content>
                 <h1>Done!</h1>
+            </mc-content>
+        </mc-page>
+    </script>
+    <script type="text/ng-template" id="view-details.html">
+        <mc-page id="view-details" title="Details Page">
+            <header>
+                <mc-nav position="left" back="true">Back</mc-nav>
+            </header>
+            <mc-content>
+                <h1>{{itemId}}</h1>
             </mc-content>
         </mc-page>
     </script>

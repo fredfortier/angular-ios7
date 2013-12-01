@@ -8,6 +8,9 @@ angular.module('mobileCloneDemo', ['mobileClone'])
             .when("/view-done", {
                 template: "view-done"
             })
+            .when("/view-details/:itemId", {
+                template: "view-details"
+            })
             .otherwise({
                 redirectTo: "/view-home"
             });
@@ -17,4 +20,9 @@ angular.module('mobileCloneDemo', ['mobileClone'])
     })
     .controller('DemoCtrl', function ($scope) {
         console.log('in the DemoCtrl', $scope);
+        var items = $scope.items = [];
+        for (var i = 0; i < 20; i++) {
+            var item = {id: i, title: 'Item #' + i, desc: 'Item Description #' + i};
+            items.push(item);
+        }
     })

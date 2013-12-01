@@ -61,9 +61,10 @@ angular.module('mobileClone')
                         console.log('slide transition complete with animation:', animation);
                     });
             },
-            next: function (pageId) {
+            next: function (pageId, param) {
                 console.log('going to page:', pageId);
-                $location.path('/' + pageId);
+                $location.search({});
+                $location.path('/' + pageId + ((param) ? '/' + param : ''));
             },
             back: function () {
                 console.log('going back to previous page:', $pages.previous());

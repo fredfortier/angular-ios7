@@ -110,6 +110,10 @@ angular.module('mobileClone')
                     deferred.reject(err);
                 }
                 return deferred.promise;
+            },
+            resize: function (el) {
+                console.log('resizing header:', el);
+                TextboxResize(el);
             }
         }
     });

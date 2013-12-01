@@ -17,6 +17,11 @@ angular.module('mobileClone')
 
                     $scope.current = getPage(currRoute);
                     $scope.previous = getPage(prevRoute);
+
+                    if (currRoute.pathParams) {
+                        console.log('adding the route params to scope:', currRoute.pathParams);
+                        angular.extend($scope, currRoute.pathParams);
+                    }
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
                 });
             },
@@ -54,7 +59,6 @@ angular.module('mobileClone')
                     var back = false;
                     if ($location.search().back) {
                         back = true;
-                        $location.search({});
                     }
                     $pages.route(scope.previous, page, back);
                     console.log('updated pages info:', $pages.info());
