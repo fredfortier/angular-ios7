@@ -9,7 +9,7 @@ angular.module('mobileCloneDemo', ['mobileClone'])
                 template: "view-done"
             })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/view-home"
             });
     })
     .run(function () {
