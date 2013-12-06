@@ -30,11 +30,18 @@ module.exports = function (grunt) {
                     'dist/<%= pkg.name %>-with-bootstrap.css': ['vendor/project-tyson/css/style.css', 'vendor/css/bootstrap.css']
                 }
             }
+        },
+        copy: {
+            cordova: {
+                src: ['dist/**', 'bower_components/**', 'demo/**'],
+                dest: 'cordova/www/'
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy:cordova']);
 }
