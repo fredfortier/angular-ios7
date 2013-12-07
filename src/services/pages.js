@@ -1,5 +1,5 @@
 angular.module('mobileClone')
-    .factory('$pages', function ($transitions, $q, $location) {
+    .factory('$pages', function ($transitions, $q, $location, $window) {
         var $pages = {
             _current: null,
             _previous: null,
@@ -62,8 +62,7 @@ angular.module('mobileClone')
                 if (!$pages.previous()) {
                     throw new Error('there is no previous page to go back to');
                 }
-                $location.search({back: true});
-                $location.path('/' + $pages.previous().id);
+                $window.history.back();
             }
         };
         return $pages;
