@@ -52,6 +52,7 @@ It is also possible to run the demo in Cordova.
 ```shell
 npm install -g cordova
 cd cordova
+cordova platform add ios
 cordova prepare ios
 cordova emulate ios
 ```
