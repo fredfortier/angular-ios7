@@ -46,9 +46,18 @@ Run the demo:
 ```shell
 node server.js
 ```
-Open the specified URL in your web browser
+Open the specified URL in your web browser.
 
-<h2>Getting Started</h2>
+It is also possible to run the demo in Cordova.
+```shell
+npm install -g cordova
+cd cordova
+cordova prepare ios
+cordova emulate ios
+```
+Follow the Cordova documentation for more details.
+
+<h2>Usage Example</h2>
 Make sure that your app includes the "mobileClone" dependency:
 ```js
 angular.module('mobileCloneDemo', ['mobileClone'])
@@ -61,7 +70,7 @@ The prefix for all directives is "mc" (as in Mobile Clone). Use the mcView direc
 
 Each page should correspond to a an Angular template. There are various methods for declaring templates. Here is how to do it with a script tag. The demo app shows a different method.
 ```html
-<script type="text/ng-template" id="view-home.html">
+<script type="text/ng-template" id="demo/partials/view-home.html">
     <mc-page id="view-home" title="Test Page">
         <header>
             <mc-nav position="left" back="true">Menu</mc-nav>
