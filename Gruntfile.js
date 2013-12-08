@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             mobileClone: {
                 src: '**/partials/**.html',
-                dest: 'templates.js'
+                dest: 'dist/templates.js'
             }
         },
         concat: {

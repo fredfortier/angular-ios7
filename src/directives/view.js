@@ -27,21 +27,12 @@ angular.module('mobileClone')
                     }
                     $rootScope.$emit('pageChangeStart', $scope);
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
+                    $pages.route($scope.previous, $scope.current, false);
+                    console.log('updated pages info:', $pages.info());
+                    $rootScope.$emit('pageChangeSuccess', $pages.info());
                 });
             },
             link: function (scope, element, attrs) {
-                scope.$watch('current', function (page, oldPage) {
-                    if (page === oldPage) {
-                        console.log('the page did not change, ignoring the event...');
-                        return;
-                    }
-                    var back = false;
-                    if ($location.search().back) {
-                        back = true;
-                    }
-                    $pages.route(scope.previous, page, back);
-                    console.log('updated pages info:', $pages.info());
-                });
             }
         };
     });
