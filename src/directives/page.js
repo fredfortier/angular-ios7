@@ -50,7 +50,7 @@ angular.module('mobileClone')
             },
             link: function (scope, element, attrs, pageCtrl) {
                 console.log('rendering button in element:', element, 'with attributes:', attrs);
-                var classes = [scope.position || 'left'];
+                var classes = [scope.position + '-nav' || 'left-nav'];
                 if (scope.back === true) {
                     classes.push('arrow');
                 }
