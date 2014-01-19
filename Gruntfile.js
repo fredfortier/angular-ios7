@@ -32,14 +32,13 @@ module.exports = function (grunt) {
         cssmin: {
             combine: {
                 files: {
-                    'dist/css/<%= pkg.name %>-standalone.css': ['vendor/project-tyson/css/style.css'],
-                    'dist/css/<%= pkg.name %>-with-bootstrap.css': ['vendor/project-tyson/css/style.css', 'vendor/css/bootstrap.css']
+                    'dist/css/<%= pkg.name %>-with-bootstrap.css': ['vendor/bootswatch/flatly/bootstrap.css']
                 }
             }
         },
         copy: {
             resources: {
-                src: ['vendor/project-tyson/img/*'],
+                src: ['vendor/bootswatch/img/*'],
                 dest: 'dist/img/',
                 expand: true,
                 flatten: true,
