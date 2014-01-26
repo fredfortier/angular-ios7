@@ -19,7 +19,7 @@ angular.module('mobileCloneDemo', ['mobileClone'])
 
     })
     .controller('DemoCtrl', function ($scope, $pages, $rootScope) {
-        console.log('in the DemoCtrl', $scope, $pages.current());
+        console.log('in the DemoCtrl', $scope, $pages.current);
         var items = $scope.items = [];
         for (var i = 0; i < 20; i++) {
             var item = {id: i, title: 'Item #' + i, desc: 'Item Description #' + i};

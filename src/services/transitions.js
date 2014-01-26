@@ -100,10 +100,10 @@ angular.module('mobileClone')
         return {
             enter: function (element, done) {
                 console.log('animating enter element:', element);
-                console.log('transitioning from:', $pages.previous(), 'to', $pages.current());
-                console.log('the back page:', $pages._back);
-                var animation = ($pages._back) ? 'sr' : 'sl';
-                $transitions.slide(animation, $pages.previous().id, $pages.current().id)
+                console.log('transitioning from:', $pages.previous, 'to', $pages.current);
+                console.log('the back page:', $pages.back);
+                var animation = ($pages.back) ? 'sr' : 'sl';
+                $transitions.slide(animation, $pages.previous, $pages.current)
                     .then(function () {
                         console.log('slide transition complete with animation:', animation);
                         done();
@@ -112,7 +112,7 @@ angular.module('mobileClone')
             leave: function (element, done) {
                 console.log('giving one second for the transition animation to complete');
                 $timeout(function () {
-                    console.log('removing', $pages.previous(), 'from ng-view...');
+                    console.log('removing', $pages.previous, 'from ng-view...');
                     done();
                 }, 1000);
             }

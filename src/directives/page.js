@@ -14,7 +14,6 @@ angular.module('mobileClone')
                 this.addButton = function (button) {
                     buttons.push(button);
                 }
-                $pages.add($scope);
             },
             link: function (scope, element, attrs) {
                 console.log('rendering page in element:', element, 'with attributes:', attrs);
@@ -40,9 +39,7 @@ angular.module('mobileClone')
                 $scope.clicked = function () {
                     console.log('clicked:', $scope);
                     if ($scope.changeTo) {
-                        $pages.next($scope.changeTo);
-                    } else if ($scope.back === true) {
-                        $pages.back();
+                        $pages.next($scope.changeTo, null);
                     } else {
                         console.log('no action associated with the page');
                     }
@@ -68,11 +65,11 @@ angular.module('mobileClone')
             replace: true,
             transclude: true,
             require: '^mcPage',
-            scope: {},
-            template: '<div class="scrollWrap"><div class="scroll"><div class="content" ng-transclude></div></div></div>',
+            template: '<div class="scrollWrap"><div class="scroll"><div class="content"><div class="strap" ng-transclude></div></div></div></div>',
             link: function (scope, element, attrs) {
                 console.log('rendering content in element:', element, 'with attributes:', attrs);
-                element.parent().find('header').after('<div class="scrollMask"></div>');
+                var html = '<div class="scrollMask"></div>';
+                element.parent().find('header').after(html);
             }
         };
     });

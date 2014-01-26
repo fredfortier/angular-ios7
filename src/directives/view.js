@@ -9,10 +9,6 @@ angular.module('mobileClone')
                 console.log('rendering mobile clone view:', $element, 'with scope:', $scope);
                 $rootScope.$on('$routeChangeStart', function (event, currRoute, prevRoute) {
                     console.log("changed the route from:", prevRoute, "to", currRoute);
-                    if (!(currRoute && currRoute.$$route && currRoute.$$route.originalPath)) {
-                        console.warn('could not process route because it is invalid: ' + JSON.stringify(currRoute));
-                        return false;
-                    }
                     function getPage(route) {
                         var url = route && route.$$route && route.$$route.originalPath;
                         return (url) ? url.split('/')[1] : null;
@@ -28,8 +24,6 @@ angular.module('mobileClone')
                     $rootScope.$emit('pageChangeStart', $scope);
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
                     $pages.route($scope.previous, $scope.current, false);
-                    console.log('updated pages info:', $pages.info());
-                    $rootScope.$emit('pageChangeSuccess', $pages.info());
                 });
             },
             link: function (scope, element, attrs) {

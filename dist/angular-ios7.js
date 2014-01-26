@@ -46,7 +46,6 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                 this.addButton = function (button) {
                     buttons.push(button);
                 }
-                $pages.add($scope);
             },
             link: function (scope, element, attrs) {
                 console.log('rendering page in element:', element, 'with attributes:', attrs);
@@ -72,9 +71,7 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                 $scope.clicked = function () {
                     console.log('clicked:', $scope);
                     if ($scope.changeTo) {
-                        $pages.next($scope.changeTo);
-                    } else if ($scope.back === true) {
-                        $pages.back();
+                        $pages.next($scope.changeTo, null);
                     } else {
                         console.log('no action associated with the page');
                     }
@@ -100,11 +97,11 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
             replace: true,
             transclude: true,
             require: '^mcPage',
-            scope: {},
-            template: '<div class="scrollWrap"><div class="scroll"><div class="content" ng-transclude></div></div></div>',
+            template: '<div class="scrollWrap"><div class="scroll"><div class="content"><div class="strap" ng-transclude></div></div></div></div>',
             link: function (scope, element, attrs) {
                 console.log('rendering content in element:', element, 'with attributes:', attrs);
-                element.parent().find('header').after('<div class="scrollMask"></div>');
+                var html = '<div class="scrollMask"></div>';
+                element.parent().find('header').after(html);
             }
         };
     });
@@ -119,10 +116,6 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                 console.log('rendering mobile clone view:', $element, 'with scope:', $scope);
                 $rootScope.$on('$routeChangeStart', function (event, currRoute, prevRoute) {
                     console.log("changed the route from:", prevRoute, "to", currRoute);
-                    if (!(currRoute && currRoute.$$route && currRoute.$$route.originalPath)) {
-                        console.warn('could not process route because it is invalid: ' + JSON.stringify(currRoute));
-                        return false;
-                    }
                     function getPage(route) {
                         var url = route && route.$$route && route.$$route.originalPath;
                         return (url) ? url.split('/')[1] : null;
@@ -138,8 +131,6 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                     $rootScope.$emit('pageChangeStart', $scope);
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
                     $pages.route($scope.previous, $scope.current, false);
-                    console.log('updated pages info:', $pages.info());
-                    $rootScope.$emit('pageChangeSuccess', $pages.info());
                 });
             },
             link: function (scope, element, attrs) {
@@ -149,68 +140,16 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
 ;angular.module('mobileClone')
     .factory('$pages', function ($transitions, $q, $location, $window) {
         var $pages = {
-            _current: null,
-            _previous: null,
-            _history: [],
-            _pages: [],
-            _back: null,
-            _params:null,
-            add: function (page) {
-                console.log('adding page to collection:', page);
-                $pages._pages.push(page);
-            },
+            current: null,
+            previous: null,
+            back: false,
             route: function (prevPageId, currentPageId, back) {
-                if (prevPageId) {
-                    console.log('setting previous page from id:', prevPageId);
-                    $pages._previous = $pages.find(prevPageId);
-                } else {
-                    console.log('no previous route, this is the landing page');
-                }
-                if (currentPageId) {
-                    console.log('setting current page from id:', currentPageId);
-                    $pages._current = $pages.find(currentPageId);
-                }
-                if (currentPageId && $pages._current) {
-                    console.log('adding current page to history...');
-                    $pages._history.push($pages._current);
-                    if ($pages.previous() && ($pages.current() != $pages.previous())) {
-                        console.log('the route points to a different page, transitioning...');
-                        $pages._back = (back);
-                    }
-                } else {
-                    throw new Error('could not set the current page, the route is invalid');
-                }
+                this.current = currentPageId;
+                this.previous = prevPageId;
+                this.back = back;
             },
-            find: function (pageId) {
-                console.log('looking for page', pageId, 'in pages:', $pages._pages);
-                var result = null;
-                angular.forEach($pages._pages, function (page) {
-                    if (pageId === page.id) {
-                        result = page;
-                    }
-                });
-                return result;
-            },
-            current: function () {
-                return $pages._current;
-            },
-            previous: function () {
-                return $pages._previous;
-            },
-            info: function () {
-                return {current: $pages.current(), previous: $pages.previous(), historySize: $pages._history.length};
-            },
-            next: function (pageId, param) {
-                console.log('going to page:', pageId);
-                $location.search({});
+            next:function(pageId,param) {
                 $location.path('/' + pageId + ((param) ? '/' + param : ''));
-            },
-            back: function () {
-                console.log('going back to previous page:', $pages.previous());
-                if (!$pages.previous()) {
-                    throw new Error('there is no previous page to go back to');
-                }
-                $window.history.back();
             }
         };
         return $pages;
@@ -317,10 +256,10 @@ angular.module('mobileClone')
         return {
             enter: function (element, done) {
                 console.log('animating enter element:', element);
-                console.log('transitioning from:', $pages.previous(), 'to', $pages.current());
-                console.log('the back page:', $pages._back);
-                var animation = ($pages._back) ? 'sr' : 'sl';
-                $transitions.slide(animation, $pages.previous().id, $pages.current().id)
+                console.log('transitioning from:', $pages.previous, 'to', $pages.current);
+                console.log('the back page:', $pages.back);
+                var animation = ($pages.back) ? 'sr' : 'sl';
+                $transitions.slide(animation, $pages.previous, $pages.current)
                     .then(function () {
                         console.log('slide transition complete with animation:', animation);
                         done();
@@ -329,7 +268,7 @@ angular.module('mobileClone')
             leave: function (element, done) {
                 console.log('giving one second for the transition animation to complete');
                 $timeout(function () {
-                    console.log('removing', $pages.previous(), 'from ng-view...');
+                    console.log('removing', $pages.previous, 'from ng-view...');
                     done();
                 }, 1000);
             }
@@ -361,7 +300,7 @@ angular.module('mobileClone')
   $templateCache.put('demo/partials/view-details.html',
     "<mc-page id=\"view-details\" title=\"Details Page\">\n" +
     "    <header>\n" +
-    "        <mc-nav position=\"left\" back=\"true\">Back</mc-nav>\n" +
+    "        <mc-nav position=\"left\" back=\"true\" change-to=\"view-home\">Back</mc-nav>\n" +
     "    </header>\n" +
     "    <mc-content>\n" +
     "        <div class=\"strap\">\n" +
@@ -421,7 +360,7 @@ angular.module('mobileClone')
   $templateCache.put('demo/partials/view-done.html',
     "<mc-page id=\"view-done\" title=\"Done Page\">\n" +
     "    <header>\n" +
-    "        <mc-nav position=\"left\" back=\"true\">Back</mc-nav>\n" +
+    "        <mc-nav position=\"left\" back=\"true\" change-to=\"view-home\">Back</mc-nav>\n" +
     "        <mc-nav position=\"right\" change-to=\"view-home\" action=\"true\">Done</mc-nav>\n" +
     "    </header>\n" +
     "    <mc-content>\n" +
@@ -434,7 +373,7 @@ angular.module('mobileClone')
   $templateCache.put('demo/partials/view-home.html',
     "<mc-page id=\"view-home\" title=\"Test Page\">\n" +
     "    <header>\n" +
-    "        <mc-nav position=\"left\" back=\"true\">Menu</mc-nav>\n" +
+    "        <mc-nav position=\"left\" back=\"true\" change-to=\"view-done\">Menu</mc-nav>\n" +
     "        <mc-nav position=\"right\" change-to=\"view-done\" action=\"true\">Info</mc-nav>\n" +
     "    </header>\n" +
     "    <mc-content>\n" +
