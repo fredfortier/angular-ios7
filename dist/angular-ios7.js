@@ -71,7 +71,11 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                 $scope.clicked = function () {
                     console.log('clicked:', $scope);
                     if ($scope.changeTo) {
-                        $pages.next($scope.changeTo, null);
+                        if ($scope.back) {
+                            $pages.back($scope.changeTo, null);
+                        } else {
+                            $pages.next($scope.changeTo, null);
+                        }
                     } else {
                         console.log('no action associated with the page');
                     }
@@ -110,7 +114,7 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
         return {
             restrict: 'E',
             scope: true,
-            replace:true,
+            replace: true,
             template: '<ng-view id="ng-view" class="slide-animation"></ng-view>',
             controller: function ($scope, $element) {
                 console.log('rendering mobile clone view:', $element, 'with scope:', $scope);
@@ -128,9 +132,14 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                         console.log('adding the route params to scope:', currRoute.pathParams);
                         angular.extend($scope, currRoute.pathParams);
                     }
+                    var isBack = null;
+                    if (currRoute.params) {
+                        console.log('found params in the route', currRoute.params, 'looking for back action...');
+                        isBack = currRoute.params.back;
+                    }
                     $rootScope.$emit('pageChangeStart', $scope);
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
-                    $pages.route($scope.previous, $scope.current, false);
+                    $pages.route($scope.previous, $scope.current, isBack);
                 });
             },
             link: function (scope, element, attrs) {
@@ -142,14 +151,20 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
         var $pages = {
             current: null,
             previous: null,
-            back: false,
-            route: function (prevPageId, currentPageId, back) {
+            isBack: null,
+            route: function (prevPageId, currentPageId, isBack) {
                 this.current = currentPageId;
                 this.previous = prevPageId;
-                this.back = back;
+                this.isBack=isBack;
             },
-            next:function(pageId,param) {
-                $location.path('/' + pageId + ((param) ? '/' + param : ''));
+            next: function (pageId, param) {
+                this.go(pageId, param, false);
+            },
+            back: function (pageId, param) {
+                this.go(pageId, param, true);
+            },
+            go: function (pageId, param, isBack) {
+                $location.path('/' + pageId + ((param) ? '/' + param : '')).search((isBack) ? {back: isBack} : {});
             }
         };
         return $pages;
@@ -257,8 +272,8 @@ angular.module('mobileClone')
             enter: function (element, done) {
                 console.log('animating enter element:', element);
                 console.log('transitioning from:', $pages.previous, 'to', $pages.current);
-                console.log('the back page:', $pages.back);
-                var animation = ($pages.back) ? 'sr' : 'sl';
+                console.log('is back action:', $pages.isBack);
+                var animation = ($pages.isBack) ? 'sr' : 'sl';
                 $transitions.slide(animation, $pages.previous, $pages.current)
                     .then(function () {
                         console.log('slide transition complete with animation:', animation);
