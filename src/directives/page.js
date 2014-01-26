@@ -39,7 +39,11 @@ angular.module('mobileClone')
                 $scope.clicked = function () {
                     console.log('clicked:', $scope);
                     if ($scope.changeTo) {
-                        $pages.next($scope.changeTo, null);
+                        if ($scope.back) {
+                            $pages.back($scope.changeTo, null);
+                        } else {
+                            $pages.next($scope.changeTo, null);
+                        }
                     } else {
                         console.log('no action associated with the page');
                     }

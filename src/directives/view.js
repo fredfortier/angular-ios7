@@ -3,7 +3,7 @@ angular.module('mobileClone')
         return {
             restrict: 'E',
             scope: true,
-            replace:true,
+            replace: true,
             template: '<ng-view id="ng-view" class="slide-animation"></ng-view>',
             controller: function ($scope, $element) {
                 console.log('rendering mobile clone view:', $element, 'with scope:', $scope);
@@ -21,9 +21,14 @@ angular.module('mobileClone')
                         console.log('adding the route params to scope:', currRoute.pathParams);
                         angular.extend($scope, currRoute.pathParams);
                     }
+                    var isBack = null;
+                    if (currRoute.params) {
+                        console.log('found params in the route', currRoute.params, 'looking for back action...');
+                        isBack = currRoute.params.back;
+                    }
                     $rootScope.$emit('pageChangeStart', $scope);
                     console.log("found page(s) in route:", {current: $scope.current, previous: $scope.previous});
-                    $pages.route($scope.previous, $scope.current, false);
+                    $pages.route($scope.previous, $scope.current, isBack);
                 });
             },
             link: function (scope, element, attrs) {

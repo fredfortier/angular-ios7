@@ -3,14 +3,20 @@ angular.module('mobileClone')
         var $pages = {
             current: null,
             previous: null,
-            back: false,
-            route: function (prevPageId, currentPageId, back) {
+            isBack: null,
+            route: function (prevPageId, currentPageId, isBack) {
                 this.current = currentPageId;
                 this.previous = prevPageId;
-                this.back = back;
+                this.isBack=isBack;
             },
-            next:function(pageId,param) {
-                $location.path('/' + pageId + ((param) ? '/' + param : ''));
+            next: function (pageId, param) {
+                this.go(pageId, param, false);
+            },
+            back: function (pageId, param) {
+                this.go(pageId, param, true);
+            },
+            go: function (pageId, param, isBack) {
+                $location.path('/' + pageId + ((param) ? '/' + param : '')).search((isBack) ? {back: isBack} : {});
             }
         };
         return $pages;

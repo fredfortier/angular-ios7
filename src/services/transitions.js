@@ -101,8 +101,8 @@ angular.module('mobileClone')
             enter: function (element, done) {
                 console.log('animating enter element:', element);
                 console.log('transitioning from:', $pages.previous, 'to', $pages.current);
-                console.log('the back page:', $pages.back);
-                var animation = ($pages.back) ? 'sr' : 'sl';
+                console.log('is back action:', $pages.isBack);
+                var animation = ($pages.isBack) ? 'sr' : 'sl';
                 $transitions.slide(animation, $pages.previous, $pages.current)
                     .then(function () {
                         console.log('slide transition complete with animation:', animation);
