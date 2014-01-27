@@ -115,7 +115,7 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
             restrict: 'E',
             scope: true,
             replace: true,
-            template: '<ng-view id="ng-view" class="slide-animation"></ng-view>',
+            template: '<ng-view id="ng-view" class="slide-animation ' + ((isMobile) ? 'native ios7' : 'ios7') + '"></ng-view>',
             controller: function ($scope, $element) {
                 console.log('rendering mobile clone view:', $element, 'with scope:', $scope);
                 $rootScope.$on('$routeChangeStart', function (event, currRoute, prevRoute) {
@@ -289,7 +289,7 @@ angular.module('mobileClone')
                 $timeout(function () {
                     console.log('removing', $pages.previous, 'from ng-view...');
                     done();
-                }, 500); //TODO: hack, fix this animation logic
+                }, 800); //TODO: hack, fix this animation logic
             }
         }
     })

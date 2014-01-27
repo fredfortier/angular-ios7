@@ -114,7 +114,7 @@ angular.module('mobileClone')
                 $timeout(function () {
                     console.log('removing', $pages.previous, 'from ng-view...');
                     done();
-                }, 700); //TODO: hack, fix this animation logic
+                }, 800); //TODO: hack, fix this animation logic
             }
         }
     })

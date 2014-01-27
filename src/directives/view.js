@@ -4,7 +4,7 @@ angular.module('mobileClone')
             restrict: 'E',
             scope: true,
             replace: true,
-            template: '<ng-view id="ng-view" class="slide-animation"></ng-view>',
+            template: '<ng-view id="ng-view" class="slide-animation ' + ((isMobile) ? 'native ios7' : 'ios7') + '"></ng-view>',
             controller: function ($scope, $element) {
                 console.log('rendering mobile clone view:', $element, 'with scope:', $scope);
                 $rootScope.$on('$routeChangeStart', function (event, currRoute, prevRoute) {

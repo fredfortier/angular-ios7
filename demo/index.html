@@ -19,11 +19,19 @@
     <script src="src/directives/view.js"></script>
     <script src="src/directives/page.js"></script>
     <script src="src/directives/list.js"></script>
+    <script>
+        isMobile = false;
+        var href = window.location.href;
+        if (href.indexOf('file') != -1) {
+            isMobile = true;
+            document.write("<script type='text/javascript' src='cordova.js'><\/script>");
+        }
+    </script>
     <!--<script src="dist/angular-ios7.js"></script>-->
     <script src="demo/js/app.js"></script>
     <title>Demo iOS7 with Bootstrap 3</title>
 </head>
-<body class="ios7" ng-controller="DemoCtrl">
+<body ng-controller="DemoCtrl">
 <mc-view></mc-view>
 </body>
 </html>
