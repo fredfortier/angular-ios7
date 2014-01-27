@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="mobileCloneDemo">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi"/>
+    <base href="/">
+
+    <link rel="stylesheet" href="vendor/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="vendor/project-tyson/css/style.css" type="text/css"/>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="src/module.js"></script>
+    <script src="src/services/pages.js"></script>
+    <script src="src/services/transitions.js"></script>
+    <script src="src/directives/view.js"></script>
+    <script src="src/directives/page.js"></script>
+    <script src="src/directives/list.js"></script>
+    <script src="demo/js/app.js"></script>
+    <title>Demo iOS7 with Bootstrap 3</title>
+</head>
+<body class="ios7" ng-controller="DemoCtrl">
+<mc-view></mc-view>
+</body>
+</html>
