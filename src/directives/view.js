@@ -15,6 +15,10 @@ angular.module('mobileClone')
                     }
 
                     $scope.current = getPage(currRoute);
+                    if (!$scope.current) {
+                        console.log('invalid route, expecting redirection');
+                        return;
+                    }
                     $scope.previous = getPage(prevRoute);
 
                     if (currRoute.pathParams) {

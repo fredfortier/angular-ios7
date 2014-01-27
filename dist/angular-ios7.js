@@ -126,6 +126,10 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                     }
 
                     $scope.current = getPage(currRoute);
+                    if (!$scope.current) {
+                        console.log('invalid route, expecting redirection');
+                        return;
+                    }
                     $scope.previous = getPage(prevRoute);
 
                     if (currRoute.pathParams) {
@@ -164,7 +168,7 @@ angular.module('mobileClone', ['ngRoute', 'ngTouch', 'ngAnimate']);;angular.modu
                 this.go(pageId, param, true);
             },
             go: function (pageId, param, isBack) {
-                $location.path('/' + pageId + ((param) ? '/' + param : '')).search((isBack) ? {back: isBack} : {});
+                $location.path('/' + pageId + ((param) ? '/' + param : '')).search((isBack) ? {back: true} : {});
             }
         };
         return $pages;

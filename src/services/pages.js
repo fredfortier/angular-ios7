@@ -16,7 +16,7 @@ angular.module('mobileClone')
                 this.go(pageId, param, true);
             },
             go: function (pageId, param, isBack) {
-                $location.path('/' + pageId + ((param) ? '/' + param : '')).search((isBack) ? {back: isBack} : {});
+                $location.path('/' + pageId + ((param) ? '/' + param : '')).search((isBack) ? {back: true} : {});
             }
         };
         return $pages;
