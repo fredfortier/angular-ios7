@@ -10,7 +10,7 @@ Try it here: http://angular-ios7.herokuapp.com
 <h2>Why?</h2>
 To add a native feel to HTML5 apps. So far, my quest for the perfect HTML5 mobile toolkit has been unsuccessful. I use responsive front-end frameworks (like Bootstrap) but they are not designed to achieve that "native feel". Conversely, most mobile specific toolkits give me more than I require -- including overlapping scripts, additional dependencies and conflicting opinions. I do not want any feature that overlaps with Angular (or a responsive framework) unless it provide clear benefits. So I decided to write my own *lightweight* Angular module.
 
-For something more all encompassing, I recommend considering this project: https://github.com/angular-widgets/angular-jqm.
+For something more all encompassing, consider: http://ionicframework.com/ or https://github.com/angular-widgets/angular-jqm.
 
 <h2>Goals</h2>
 This is a clone of iOS7, not a custom design. To add other platforms or custom look, one could modify only the iOS7 elements in the CSS (without touching JS).
